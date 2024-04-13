@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
+            user-select: none; /* Disable text selection */
         }
         .background {
             position: fixed;
@@ -52,15 +53,27 @@
         }
         .header {
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
         .header h1 {
             font-size: 32px;
             margin-bottom: 10px;
             color: #333;
         }
-        .header p {
-            font-size: 18px;
-            color: #555;
+        .social-icons {
+            margin-top: 20px; /* Added margin */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Align icons to the left */
+        }
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            cursor: pointer;
         }
         /* Add styles for interactive elements */
         .quiz-button {
@@ -176,8 +189,11 @@
     <div class="content">
         <div class="header">
             <h1>Welcome to My Otaku Page!</h1>
+            <div class="social-icons">
+                <img src="https://i.pinimg.com/736x/99/26/4d/99264d4441b917087b8dc7ee46c10ba1.jpg" alt="Instagram" class="social-icon" onclick="window.open('https://www.instagram.com/dr.stoneshinigami?igsh=MTBqOG04bGdoeWpsYQ==', '_blank')">
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/discord-round-color-icon.png" alt="Discord" class="social-icon" onclick="window.open('https://discord.com/invite/axtXRzqHeY', '_blank')">
+            </div>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtRKdM-hWAuBfi8xDfP2cPo41fIgOVqF-SqLpb8oFyig&s" alt="Gojo Satoru" class="profile-pic">
-            <p>Follow me on Instagram: <a href="https://www.instagram.com/dr.stoneshinigami?igsh=MTBqOG04bGdoeWpsYQ==">@dr.stoneshinigami</a></p>
             <button class="quiz-button" onclick="startQuiz()">Anime Trivia Quiz</button>
         </div>
         <div class="about-me-container" id="about-me-container">
@@ -307,6 +323,9 @@
             const listItem = document.createElement('li');
             listItem.textContent = `Score: ${score}/${questions.length} - Time: ${elapsedTime}s`;
             scoreboardElement.appendChild(listItem);
+
+            // Hide the quiz container
+            document.getElementById('quiz-container').style.display = "none";
 
             // Show the About Me section
             document.getElementById('about-me-container').style.display = "block";
